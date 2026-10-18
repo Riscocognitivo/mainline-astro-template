@@ -16,7 +16,7 @@ const temas = [
 ];
 
 export const Vertical = () => (
-  <ScrollArea className="rounded-md border" style={{ height: 220, width: 260 }}>
+  <ScrollArea type="always" className="rounded-md border" style={{ height: 220, width: 260 }}>
     <div className="p-4">
       <p className="text-sm font-medium" style={{ marginBottom: "var(--space-3)" }}>
         Temas do blog
@@ -32,7 +32,7 @@ export const Vertical = () => (
 );
 
 export const Horizontal = () => (
-  <ScrollArea className="rounded-md border whitespace-nowrap" style={{ width: 360 }}>
+  <ScrollArea type="always" className="rounded-md border whitespace-nowrap" style={{ width: 360 }}>
     <div className="flex gap-3 p-4" style={{ width: "max-content" }}>
       {temas.slice(0, 7).map((t) => (
         <div

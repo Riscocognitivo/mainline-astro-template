@@ -21,8 +21,8 @@ const useOpenOnMount = () => {
       new MouseEvent("contextmenu", {
         bubbles: true,
         cancelable: true,
-        clientX: r.left + r.width / 2 - 80,
-        clientY: r.top + 40,
+        clientX: r.left + 140,
+        clientY: r.top + 64,
       }),
     );
   }, []);
@@ -37,8 +37,8 @@ export const Default = () => {
         <ContextMenuTrigger asChild>
           <div
             ref={ref}
-            className="flex items-center justify-center rounded-md border text-sm text-muted-foreground"
-            style={{ width: 420, height: 260, borderStyle: "dashed" }}
+            className="rounded-md border p-4 text-sm text-muted-foreground"
+            style={{ width: 460, height: 320, borderStyle: "dashed" }}
           >
             Clique com o botão direito no trecho do artigo
           </div>

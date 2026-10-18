@@ -6,12 +6,14 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
+  SidebarInput,
   SidebarInset,
   SidebarMenu,
   SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  SidebarSeparator,
   SidebarTrigger,
 } from "mainline-astro-template";
 import { BookOpen, Brain, ClipboardList, House, Settings } from "lucide-react";
@@ -76,18 +78,56 @@ const Main = () => (
 );
 
 export const Default = () => (
-  <SidebarProvider>
-    <Sidebar>
+  <SidebarProvider style={{ minHeight: 0, height: 600 }}>
+    <Sidebar collapsible="none" className="border-r">
       <Nav />
     </Sidebar>
     <Main />
   </SidebarProvider>
 );
 
-export const Static = () => (
-  <SidebarProvider style={{ minHeight: 0, height: 640 }}>
+export const Grouped = () => (
+  <SidebarProvider style={{ minHeight: 0, height: 600 }}>
     <Sidebar collapsible="none" className="border-r">
-      <Nav />
+      <SidebarHeader>
+        <SidebarInput placeholder="Buscar artigos" aria-label="Buscar artigos" />
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Temas</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive>
+                  <Brain />
+                  <span>Atenção</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <BookOpen />
+                  <span>Memória de trabalho</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarSeparator />
+        <SidebarGroup>
+          <SidebarGroupLabel>Ferramentas</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <ClipboardList />
+                  <span>Avaliação de risco</span>
+                </SidebarMenuButton>
+                <SidebarMenuBadge>Novo</SidebarMenuBadge>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
     </Sidebar>
     <Main />
   </SidebarProvider>

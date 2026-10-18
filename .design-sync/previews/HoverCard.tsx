@@ -13,7 +13,7 @@ export const Default = () => (
       <HoverCardTrigger asChild>
         <Button variant="link">@riscocognitivo</Button>
       </HoverCardTrigger>
-      <HoverCardContent>
+      <HoverCardContent style={{ width: 320 }}>
         <div className="flex gap-3">
           <Avatar>
             <AvatarFallback>RC</AvatarFallback>
@@ -32,7 +32,7 @@ export const Default = () => (
 );
 
 export const Definicao = () => (
-  <div className="flex justify-center p-6">
+  <div className="flex justify-center p-6" style={{ paddingTop: 160 }}>
     <p className="text-sm" style={{ maxWidth: 420 }}>
       O desempenho cai quando a{" "}
       <HoverCard defaultOpen>
@@ -41,7 +41,7 @@ export const Definicao = () => (
             memória de trabalho
           </a>
         </HoverCardTrigger>
-        <HoverCardContent>
+        <HoverCardContent side="top">
           <p className="text-sm">
             Sistema que mantém e manipula poucas informações por alguns segundos, como um número de
             telefone enquanto você o digita.

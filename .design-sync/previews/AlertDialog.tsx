@@ -9,6 +9,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
+  buttonVariants,
 } from "mainline-astro-template";
 
 export const Default = () => (
@@ -44,8 +45,8 @@ export const Destrutivo = () => (
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancelar</AlertDialogCancel>
-        <AlertDialogAction asChild>
-          <Button variant="destructive">Excluir histórico</Button>
+        <AlertDialogAction className={buttonVariants({ variant: "destructive" })}>
+          Excluir histórico
         </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>

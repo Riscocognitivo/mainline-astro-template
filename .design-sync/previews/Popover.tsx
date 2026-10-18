@@ -6,7 +6,7 @@ export const Default = () => (
       <PopoverTrigger asChild>
         <Button variant="outline">Ajustar lembretes</Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <div className="grid gap-4">
           <div className="space-y-2">
             <h4 className="font-medium">Pausas de foco</h4>

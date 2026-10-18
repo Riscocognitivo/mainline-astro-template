@@ -16,7 +16,7 @@ const temas = [
 ];
 
 export const Default = () => (
-  <div className="flex justify-center p-6" style={{ minHeight: 360 }}>
+  <div className="flex justify-center p-6" style={{ alignItems: "flex-start", minHeight: 360 }}>
     <NavigationMenu defaultValue="temas">
       <NavigationMenuList>
         <NavigationMenuItem value="temas">

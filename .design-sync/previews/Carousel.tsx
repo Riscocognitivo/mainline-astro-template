@@ -17,7 +17,7 @@ const Slide = ({ titulo, n }: { titulo: string; n: number }) => (
       style={{ minHeight: 160 }}
     >
       <span className="text-muted-foreground text-sm">Artigo {n}</span>
-      <span className="text-2xl font-semibold">{titulo}</span>
+      <span className="text-2xl font-semibold" style={{ textAlign: "center" }}>{titulo}</span>
     </CardContent>
   </Card>
 );

@@ -17,7 +17,7 @@ export const Direita = () => (
     <SheetTrigger asChild>
       <Button variant="outline">Editar perfil</Button>
     </SheetTrigger>
-    <SheetContent>
+    <SheetContent onOpenAutoFocus={(e) => e.preventDefault()}>
       <SheetHeader>
         <SheetTitle>Preferências de leitura</SheetTitle>
         <SheetDescription>Escolha os temas que aparecem primeiro no seu feed do blog.</SheetDescription>
@@ -44,7 +44,7 @@ export const Direita = () => (
 
 export const Esquerda = () => (
   <Sheet defaultOpen>
-    <SheetContent side="left">
+    <SheetContent side="left" onOpenAutoFocus={(e) => e.preventDefault()}>
       <SheetHeader>
         <SheetTitle>Temas do blog</SheetTitle>
         <SheetDescription>Navegue pelos artigos por área.</SheetDescription>
