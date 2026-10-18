@@ -65,7 +65,7 @@ export const Contact = () => {
   return (
     <section className="py-28 lg:py-32 lg:pt-44">
       <div className="container max-w-2xl">
-        <h1 className="text-center text-2xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+        <h1 className="text-center text-2xl font-semibold md:text-4xl lg:text-5xl">
           Contact us
         </h1>
         <p className="text-muted-foreground mt-4 text-center leading-snug font-medium lg:mx-auto">

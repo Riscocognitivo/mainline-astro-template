@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { GITHUB_URL } from "@/consts";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/logo";
 
 const ITEMS = [
   {
@@ -51,19 +52,13 @@ export const Navbar = () => {
   return (
     <section
       className={cn(
-        "bg-background/70 absolute left-1/2 z-50 w-[min(90%,700px)] -translate-x-1/2 rounded-4xl border backdrop-blur-md transition-all duration-300",
+        "bg-background/80 absolute left-1/2 z-50 w-[min(90%,700px)] -translate-x-1/2 rounded-2xl border backdrop-blur-[20px] backdrop-saturate-[1.8] transition-all duration-[var(--duration-base)]",
         "top-5 lg:top-12",
       )}
     >
       <div className="flex items-center justify-between px-6 py-3">
-        <a href="/" className="flex shrink-0 items-center gap-2">
-          <img
-            src="/logo.svg"
-            alt="logo"
-            width={94}
-            height={18}
-            className="dark:invert"
-          />
+        <a href="/" aria-label="Risco Cognitivo — início" className="flex shrink-0 items-center gap-2">
+          <Logo />
         </a>
 
         {/* Desktop Navigation */}

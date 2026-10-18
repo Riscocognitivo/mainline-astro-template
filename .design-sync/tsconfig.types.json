@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "skipLibCheck": true,
+    "noEmitOnError": false,
+    "rootDir": "../src",
+    "outDir": "./.cache/pkg/types"
+  },
+  "include": ["../src/components/**/*.tsx", "../src/lib/**/*.ts", "../src/hooks/**/*.ts", "../src/consts.ts", "../.astro/types.d.ts"],
+  "exclude": []
+}

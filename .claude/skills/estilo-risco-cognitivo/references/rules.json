@@ -1,0 +1,79 @@
+{
+  "version": "1.1.0",
+  "common": {
+    "hype_terms": [
+      "incr[ií]vel", "revolucion[áa]ri", "chocante", "bomb[áa]stic", "milagr",
+      "voc[êe] n[ãa]o vai acreditar", "imperd[ií]vel", "segredo"
+    ],
+    "absolute_terms": [
+      "garante", "garantid[oa]s?", "comprovadamente", "definitivamente",
+      "sem d[úu]vida", "cura (?:definitiva|garantida)", "100\\s?% (?:seguro|eficaz|garantid)"
+    ],
+    "placeholders": [
+      "<<[^>]*>>", "\\bTODO\\b", "\\bXXX\\b", "lorem ipsum", "\\[inserir[^\\]]*\\]"
+    ],
+    "number_claim": "\\b\\d+(?:[.,]\\d+)?\\s?%|\\b\\d{1,3}(?:\\.\\d{3})+\\b|\\b\\d+\\s+(?:mil|milh[õo]es|milh[ãa]o|bilh[õo]es)\\b|\\bn\\s?=\\s?\\d+",
+    "source_markers": [
+      "https?://", "\\bdoi\\b", "\\bFonte\\s*:", "\\bEvid[êe]ncia\\s*:", "\\[\\^?\\d+\\]", "\\(Fonte"
+    ],
+    "max_avg_sentence_words": 28,
+    "max_sentence_words": 45,
+    "max_paragraph_words": 80,
+    "required_sections": [
+      {"id": "status", "label": "Estado da validação / limitações / incertezas",
+       "pattern": "estado da valida|status da valida|limita|incerteza", "severity": "warn"}
+    ]
+  },
+  "jornalistico": {
+    "required_frontmatter": ["titulo", "slug", "meta_descricao", "autor", "publicado"],
+    "title_max_chars": 60,
+    "meta_min_chars": 110,
+    "meta_max_chars": 160,
+    "slug_max_chars": 75,
+    "min_h2": 3,
+    "min_question_h2_ratio": 0.5,
+    "lead_max_words": 70,
+    "lead_attribution_cues": "segundo|de acordo com|publicad[oa]|estudo|pesquisa|revis[ãa]o|ensaio|an[áa]lise",
+    "causal_heading_verbs": [
+      "causa(?:m)?", "provoca(?:m)?", "leva(?:m)? a", "faz(?:em)? com que",
+      "ocasiona(?:m)?", "resulta(?:m)? em"
+    ],
+    "min_ctas": 1,
+    "cta_heading_pattern": "^CTA\\b",
+    "cta_fields_required": [
+      {"id": "destino", "pattern": "Destino"},
+      {"id": "objetivo", "pattern": "Objetivo"},
+      {"id": "evento", "pattern": "Evento"}
+    ],
+    "cta_fields_recommended": [
+      {"id": "posicao", "pattern": "Posi[çc][ãa]o"}
+    ],
+    "required_sections": [
+      {"id": "metodo", "label": "Metodologia", "pattern": "m[ée]todo|como o estudo|como foi", "severity": "warn"},
+      {"id": "limites", "label": "Limitações / contraponto / causalidade", "pattern": "limita|contraponto|causalidade|n[ãa]o permite|n[ãa]o responde|n[ãa]o (?:[ée] poss[ií]vel|se pode)|o que n[ãa]o|cautela|ressalva", "severity": "error"},
+      {"id": "implicacoes", "label": "Implicações práticas", "pattern": "implica|pr[áa]tic|cuidado|utilidade|import(?:a|am|[âa]ncia)\\b|o que vem a seguir|pr[óo]ximos passos", "severity": "warn"},
+      {"id": "fontes", "label": "Fontes / referências", "pattern": "fontes?\\b|refer[êe]ncias", "severity": "error"}
+    ]
+  },
+  "executivo": {
+    "bluf_heading_pattern": "conclus|veredito|bluf|resumo executivo|\\bL1\\b",
+    "levels": ["L1", "L2", "L3"],
+    "finding_heading_pattern": "^(?:achado|finding)\\b|^[A-Z]{1,4}-\\d{1,3}\\b",
+    "finding_fields_required": [
+      {"id": "impacto", "pattern": "Impacto"},
+      {"id": "acao", "pattern": "A[çc][ãa]o(?: recomendada)?"},
+      {"id": "criterio", "pattern": "Crit[ée]rio de (?:sucesso|conclus[ãa]o)"},
+      {"id": "evidencia", "pattern": "Evid[êe]ncia"},
+      {"id": "confianca", "pattern": "Confian[çc]a"}
+    ],
+    "finding_fields_recommended": [
+      {"id": "responsavel", "pattern": "Respons[áa]vel"},
+      {"id": "prazo", "pattern": "Prazo"}
+    ],
+    "severity_labels": ["bloqueante", "cr[ií]tico", "alto", "m[ée]dio", "baixo"],
+    "confidence_values": "alta|m[ée]dia|baixa",
+    "required_sections": [
+      {"id": "matriz", "label": "Matriz de ações", "pattern": "matriz de a[çc][õo]es|plano de a[çc][ãa]o", "severity": "warn"}
+    ]
+  }
+}

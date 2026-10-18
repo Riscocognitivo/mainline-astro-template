@@ -1,143 +1,71 @@
+/* ds-base fica abaixo de base: o reset do Tailwind vence nas tags (h1–h6, a, p) usadas pelos blocos,
+   e o resto do base.css do design system (corpo, foco, seleção, .blend, movimento reduzido) continua valendo. */
+@layer theme, ds-base, base, components, utilities;
 @import "tailwindcss";
 
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:is(.dark *));
+/* Design system Risco Cognitivo — fonte única em /design-system (projeto Claude Design).
+   Os valores vivem lá; este arquivo só liga os tokens ao Tailwind e aos papéis do shadcn/ui.
+   As fontes (Inter) carregam em BaseHead.astro, não por @import remoto. */
+@import "../../design-system/tokens/colors.css";
+@import "../../design-system/tokens/typography.css";
+@import "../../design-system/tokens/spacing.css";
+@import "../../design-system/tokens/patterns.css";
+@import "../../design-system/tokens/executar.css";
+@import "../../design-system/tokens/base.css" layer(ds-base);
+@import "../../design-system/components/components.css" layer(components);
 
-@font-face {
-  font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+/* Tema escuro do design system: data-theme="dark" (não a classe .dark). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-@font-face {
-  font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+/* Papéis do shadcn/ui → tokens do design system. Declarados também em [data-theme]
+   para que uma faixa com tema próprio (ex.: PromoTile escuro) recalcule os papéis. */
+:root,
+[data-theme] {
+  --background: var(--color-bg);
+  --foreground: var(--color-text);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --popover: var(--color-surface-raised);
+  --popover-foreground: var(--color-text);
+  --primary: var(--action-primary);
+  --primary-foreground: var(--color-on-accent);
+  --secondary: var(--color-surface);
+  --secondary-foreground: var(--color-text);
+  --muted: var(--color-surface);
+  --muted-foreground: var(--color-text-muted);
+  --accent: color-mix(in srgb, var(--color-text) 6%, var(--color-bg));
+  --accent-foreground: var(--color-text);
+  --destructive: var(--color-danger);
+  --destructive-foreground: var(--color-on-accent);
+  --border: var(--color-divider);
+  --input: var(--color-divider);
+  --ring: var(--focus-ring);
 
-@font-face {
-  font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
+  /* Gráficos: rampa do azul de ação + neutros. Cores de status ficam para nível de risco. */
+  --chart-1: var(--color-accent-600);
+  --chart-2: var(--color-accent-400);
+  --chart-3: var(--color-accent-800);
+  --chart-4: var(--color-neutral-500);
+  --chart-5: var(--color-neutral-300);
 
-@font-face {
-  font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+  --sidebar: var(--color-surface);
+  --sidebar-foreground: var(--color-text);
+  --sidebar-primary: var(--action-primary);
+  --sidebar-primary-foreground: var(--color-on-accent);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--color-text);
+  --sidebar-border: var(--color-divider);
+  --sidebar-ring: var(--focus-ring);
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.92 0.04 86.47);
-  --primary-foreground: oklch(0.31 0.02 86.64);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --radius: var(--radius-md);
 
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-
-  --radius: 8px;
-
-  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-sm:
-    0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-  --shadow-md:
-    0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
-  --shadow-lg:
-    0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
-  --shadow-xl:
-    0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
-  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-
-  --font-dm-sans: "DM Sans", sans-serif;
-  --font-inter: "inter", sans-serif;
-
-  --font-sans:
-    var(--font-dm-sans), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
-
-  /* StyleGlide provides a better abstraction for fonts */
-  --display-family: var(--font-sans);
-  --text-family: var(--font-inter);
-  --display-weight: 600;
+  --display-family: var(--font-heading);
+  --text-family: var(--font-body);
+  --display-weight: var(--font-heading-weight);
   --text-weight: 400;
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
 }
 
 @theme inline {
@@ -160,6 +88,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-link: var(--color-link);
+  --color-scrim: var(--color-scrim);
+  --color-section: var(--color-section);
+  --color-on-section: var(--color-on-section);
 
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -176,23 +108,53 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --radius-xs: calc(var(--radius) - 4px);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 2 - 4px);
-  --radius-2xl: calc(var(--radius) * 2);
-  --radius-3xl: calc(var(--radius) * 3);
-  --radius-4xl: calc(var(--radius) * 4);
+  /* Raios do design system: 8 sm · 12 campos · 18 cards · 28 tiles e diálogos · pílula */
+  --radius-xs: var(--radius-sm);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-md);
+  --radius-xl: var(--radius-lg);
+  --radius-2xl: var(--radius-xl);
+  --radius-3xl: var(--radius-xl);
+  --radius-4xl: var(--radius-xl);
 
-  --shadow-2xs: var(--shadow-2xs);
-  --shadow-xs: var(--shadow-xs);
+  /* Sombras quase planas: sm = borda de 1px, md = ambiente, lg = diálogo */
+  --shadow-2xs: var(--shadow-sm);
+  --shadow-xs: var(--shadow-sm);
   --shadow-sm: var(--shadow-sm);
-  --shadow: var(--shadow);
+  --shadow: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
-  --shadow-xl: var(--shadow-xl);
-  --shadow-2xl: var(--shadow-2xl);
+  --shadow-xl: var(--shadow-lg);
+  --shadow-2xl: var(--shadow-lg);
+
+  /* Escala tipográfica do design system aplicada às classes text-* do Tailwind */
+  --text-xs: var(--text-micro);
+  --text-xs--line-height: var(--leading-micro);
+  --text-sm: var(--text-caption);
+  --text-sm--line-height: var(--leading-caption);
+  --text-base: var(--text-body);
+  --text-base--line-height: var(--leading-body);
+  --text-lg: var(--text-lead);
+  --text-lg--line-height: var(--leading-lead);
+  --text-xl: var(--text-card);
+  --text-xl--line-height: var(--leading-card);
+  --text-2xl: var(--text-subtitle);
+  --text-2xl--line-height: var(--leading-subtitle);
+  --text-3xl: var(--text-subtitle);
+  --text-3xl--line-height: var(--leading-subtitle);
+  --text-4xl: var(--text-title);
+  --text-4xl--line-height: var(--leading-title);
+  --text-5xl: var(--text-hero);
+  --text-5xl--line-height: var(--leading-hero);
+  --text-6xl: var(--text-display);
+  --text-6xl--line-height: var(--leading-display);
+  --text-7xl: var(--text-display);
+  --text-7xl--line-height: var(--leading-display);
+  --text-8xl: var(--text-display);
+  --text-8xl--line-height: var(--leading-display);
+  --text-9xl: var(--text-display);
+  --text-9xl--line-height: var(--leading-display);
 
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
@@ -200,8 +162,8 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1400px; /* default is 1536px */
 
-  --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-body);
   --font-mono: var(--font-mono);
 
   --font-display: var(--display-family);
@@ -209,8 +171,10 @@
   --font-weight-display: var(--display-weight);
   --font-weight-text: var(--text-weight);
 
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --ease-standard: var(--ease-standard);
+
+  --animate-accordion-down: accordion-down var(--duration-base) var(--ease-standard);
+  --animate-accordion-up: accordion-up var(--duration-base) var(--ease-standard);
 
   @keyframes accordion-down {
     from {
@@ -230,12 +194,12 @@
   }
 }
 
+/* Coluna de conteúdo 1068px com borda responsiva */
 @utility container {
+  width: 100%;
   margin-inline: auto;
-  padding-inline: 1.5rem;
-  @media (width >= 1400px) {
-    max-width: 1220px;
-  }
+  padding-inline: var(--layout-edge);
+  max-width: calc(var(--layout-column) + 2 * var(--layout-edge));
 }
 
 @layer utilities {
@@ -249,22 +213,6 @@
   .font-display {
     font-family: var(--font-display);
     font-weight: var(--display-weight);
-    -webkit-font-feature-settings:
-      "ss02" on,
-      "ss03" on,
-      "ss04" on;
-    -moz-font-feature-settings:
-      "ss02" on,
-      "ss03" on,
-      "ss04" on;
-    -ms-font-feature-settings:
-      "ss02" on,
-      "ss03" on,
-      "ss04" on;
-    font-feature-settings:
-      "ss02" on,
-      "ss03" on,
-      "ss04" on; /* Enables the special `a` character and other characters for DM Sans */
   }
   .font-mono {
     font-family: var(--font-mono), monospace;
@@ -300,6 +248,47 @@ body {
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+    border-color: var(--color-divider, currentColor);
+  }
+}
+
+/* Texto longo (blog, MDX): plugin typography com as cores e a medida do design system */
+.prose {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-lead: var(--color-text-muted);
+  --tw-prose-links: var(--color-link);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-counters: var(--color-text-muted);
+  --tw-prose-bullets: var(--color-neutral-400);
+  --tw-prose-hr: var(--color-divider);
+  --tw-prose-quotes: var(--color-text);
+  --tw-prose-quote-borders: var(--color-divider);
+  --tw-prose-captions: var(--color-text-muted);
+  --tw-prose-code: var(--color-text);
+  --tw-prose-pre-code: var(--color-text);
+  --tw-prose-pre-bg: var(--color-surface);
+  --tw-prose-th-borders: var(--color-divider);
+  --tw-prose-td-borders: var(--color-divider);
+  --tw-prose-invert-body: var(--color-text);
+  --tw-prose-invert-headings: var(--color-text);
+  --tw-prose-invert-links: var(--color-link);
+  --tw-prose-invert-bold: var(--color-text);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  max-width: var(--column-narrow);
+  & :where(a) {
+    text-decoration: none;
+    text-underline-offset: 3px;
+  }
+  & :where(a):hover {
+    text-decoration: underline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
   }
 }
