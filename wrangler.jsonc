@@ -6,4 +6,6 @@
     "directory": "./dist",
     "not_found_handling": "404-page",
   },
+  // Exigido pelo deploy de preview dos PRs (npx wrangler preview); pode ficar vazio.
+  "previews": {},
 }
