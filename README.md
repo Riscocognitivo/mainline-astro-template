@@ -66,7 +66,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deployment
 
-Production-ready and tested for deployment on [Vercel](https://vercel.com)
+Deploy como Cloudflare Worker (static assets): `npm run deploy` (build + `wrangler deploy`). Configuração em `wrangler.jsonc`; para pré-visualizar localmente no runtime do Workers, `npm run cf:preview`.
 
 ## Credits
 
