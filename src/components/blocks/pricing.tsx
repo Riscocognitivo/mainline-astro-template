@@ -56,7 +56,7 @@ export const Pricing = ({ className }: { className?: string }) => {
     <section className={cn("py-28 lg:py-32", className)}>
       <div className="container max-w-5xl">
         <div className="space-y-4 text-center">
-          <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl">
             Pricing
           </h2>
           <p className="text-muted-foreground mx-auto max-w-xl leading-snug text-balance">

@@ -22,28 +22,10 @@ const imageURL = new URL(finalImage, Astro.url);
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 
-<!-- Preconnect to Google Fonts -->
+<!-- Fontes do design system: Inter (web) atrás da pilha SF Pro do sistema. Pesos >= 400 (TIP-08). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Load Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-<!-- Preload local fonts -->
-<link 
-  rel="preload" 
-  href="/fonts/dm-sans/DMSans-Regular.ttf" 
-  as="font" 
-  type="font/ttf" 
-  crossorigin="anonymous"
-/>
-<link 
-  rel="preload" 
-  href="/fonts/dm-sans/DMSans-Bold.ttf" 
-  as="font" 
-  type="font/ttf" 
-  crossorigin="anonymous"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="robots" content={`${SITE_METADATA.robots.index ? 'index' : 'noindex'}, ${SITE_METADATA.robots.follow ? 'follow' : 'nofollow'}`} />
@@ -52,15 +34,11 @@ const imageURL = new URL(finalImage, Astro.url);
 <meta name="creator" content={SITE_METADATA.creator} />
 <meta name="publisher" content={SITE_METADATA.publisher} />
 
-<!-- Theme Script -->
+<!-- Theme Script: o design system usa data-theme="light|dark" no <html> -->
 <script is:inline>
-  // Get theme from localStorage or system preference
   const savedTheme = localStorage.getItem('theme');
   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  const initialTheme = savedTheme || systemTheme;
-  
-  // Apply theme immediately to prevent flashing
-  document.documentElement.classList.toggle('dark', initialTheme === 'dark');
+  document.documentElement.dataset.theme = savedTheme || systemTheme;
 </script>
 
 <!-- Favicon -->

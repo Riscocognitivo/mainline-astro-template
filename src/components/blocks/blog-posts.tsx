@@ -7,7 +7,7 @@ const BlogPosts = ({ posts }: { posts: any[] }) => {
     <>
       <section>
         <div className="container max-w-5xl space-y-4 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+          <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
             Blog
           </h1>
 

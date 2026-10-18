@@ -39,7 +39,7 @@ export const Hero = () => {
       <div className="container flex flex-col justify-between gap-8 md:gap-14 lg:flex-row lg:gap-20">
         {/* Left side - Main content */}
         <div className="flex-1">
-          <h1 className="text-foreground max-w-160 text-3xl tracking-tight md:text-4xl lg:text-5xl xl:whitespace-nowrap">
+          <h1 className="text-foreground max-w-160 text-3xl md:text-4xl lg:text-5xl xl:whitespace-nowrap">
             Mainline Astro template
           </h1>
 
@@ -54,7 +54,7 @@ export const Hero = () => {
             </Button>
             <Button
               variant="outline"
-              className="from-background h-auto gap-2 bg-linear-to-r to-transparent shadow-md"
+              className="gap-2"
               asChild
             >
               <a

@@ -1,4 +1,10 @@
-# Mainline Astro Template
+# Risco Cognitivo — blog
+
+Site do Risco Cognitivo construído sobre o template Mainline (Astro 5, Tailwind 4, shadcn/ui). O design system do template foi substituído pelo **design system Risco Cognitivo**, que fica em [`design-system/`](./design-system/readme.md). As regras estão em [`design-system/docs/guidelines.md`](./design-system/docs/guidelines.md) e o estilo de escrita em [`.claude/skills/estilo-risco-cognitivo`](./.claude/skills/estilo-risco-cognitivo/SKILL.md). Veja o [`CLAUDE.md`](./CLAUDE.md) para entender como os tokens chegam ao código.
+
+---
+
+## Template de origem: Mainline Astro Template
 
 Mainline is a free template built with shadcn/ui, Tailwind 4 and Astro 5.
 
@@ -37,7 +43,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - **MDX Support**: For content pages
 - **Animations**: Motion library (Framer Motion) integration
 - **Prettier**: Pre-configured code formatting
-- **Custom Fonts**: DM Sans font family included
+- **Fonts**: SF Pro (system) with Inter as web fallback, from the Risco Cognitivo design system
 - **Icons**: Lucide React + React Icons libraries
 - **Styleglide Integration**: For component previews/development
 - **Responsive Design**: Mobile-friendly layout

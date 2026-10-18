@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
+import { Logo } from "@/components/logo";
 
 const LoginSection = () => {
   return (
@@ -14,14 +15,8 @@ const LoginSection = () => {
         <div className="flex flex-col gap-4">
           <Card className="mx-auto w-full max-w-sm">
             <CardHeader className="flex flex-col items-center space-y-0">
-              <img
-                src="/logo.svg"
-                alt="logo"
-                width={94}
-                height={18}
-                className="mb-7 dark:invert"
-              />
-              <p className="mb-2 text-2xl font-bold">Welcome back</p>
+              <Logo className="mb-7" />
+              <p className="mb-2 text-2xl font-semibold">Welcome back</p>
               <p className="text-muted-foreground">
                 Please enter your details.
               </p>

@@ -84,7 +84,7 @@ export const Testimonials = ({
       <section className={cn("overflow-hidden py-28 lg:py-32", className)}>
         <div className="container">
           <div className="space-y-4">
-            <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl">
               Trusted by product builders
             </h2>
             <p className="text-muted-foreground max-w-md leading-snug">
